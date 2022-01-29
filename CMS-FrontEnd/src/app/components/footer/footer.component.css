@@ -1,0 +1,51 @@
+.footer {
+    width: 100%;
+    background-color: var(--primary-default);
+    color: var(--primary-light);
+    text-align: justify ;
+    padding: 20px 20px;
+    margin-top:20px;
+}
+
+.text-center{
+    font-size: 30px;
+}
+
+.section-footer{
+    font-size:small;
+    word-spacing: 0px;
+}
+
+.footer-flex{
+  justify-content: space-evenly;
+  display: block;
+}
+
+.title-footer{
+  margin-top: 20px;
+  font-size: medium;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+
+input[type=text] {
+  width: 300px;
+  padding: 7px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button{
+    padding: 0px;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+form{
+    margin-top: 20px;
+}
+
+mat-divider{
+    margin:20px
+}

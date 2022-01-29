@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <changeSet  author="EL KOTB ZAKARIA"  id="1">
+    <comment>create table Role</comment>
+    <sql>
+            create table role (
+                id SERIAL not null primary key ,
+                role varchar(255) not null
+            );
+	</sql>
+  </changeSet>
+  <changeSet  author="EL KOTB ZAKARIA"  id="2">
+    <comment>create table Account</comment>
+    <sql>
+            create table account (
+                id SERIAL not null primary key ,
+                login varchar(255) not null,
+                password varchar(255) not null,
+                role_id bigint,
+				foreign key (role_id) references role (id)
+            );
+	</sql>
+  </changeSet>
+  <changeSet  author="EL KOTB ZAKARIA"  id="3">
+    <comment>insert into table Role</comment>
+    <sql>
+            insert into role (role) values ('ADMIN'),('SUPER_ADMIN');
+	</sql>
+  </changeSet>
+  <changeSet  author="EL KOTB ZAKARIA"  id="4">
+    <comment>insert into table Account</comment>
+    <sql>
+            insert into account (login,password) values ('zakaria','$2a$10$Xdc3QhtGjttRTZwpv1DYCOYDKYB1zqmQCWFNe8K8x0LhgDEuzMG.u');
+	</sql>
+  </changeSet>
+
+    <changeSet  author="CHICHI Hamza"  id="5">
+        <comment>create table sidebar</comment>
+        <sql>
+            create table sidebar (
+                sidebar_id  bigserial not null,
+                primary key (sidebar_id)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet  author="CHICHI Hamza"  id="6">
+        <comment>create table sideba_item</comment>
+        <sql>
+            create table sidebar_item (
+                id  bigserial not null,
+                position int4 not null,
+                title varchar(255) not null,
+                url varchar(255) not null,
+                primary key (id)
+            );
+        </sql>
+    </changeSet>
+
+
+    <changeSet  author="CHICHI Hamza"  id="7">
+        <comment>create table item_by_sidebar</comment>
+        <sql>
+            create table items_by_sidebar (
+                sidebar_id int8 not null,
+                items_id int8 not null
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet  author="CHICHI Hamza"  id="8">
+        <comment>add unique constraint position to sidebar_item</comment>
+        <sql>
+            alter table sidebar_item
+                add constraint item_sidebar_unique_position unique (position)
+        </sql>
+    </changeSet>
+
+    <changeSet  author="CHICHI Hamza"  id="9">
+        <comment>add unique constraint title to sidebar_item</comment>
+        <sql>
+            alter table sidebar_item
+                add constraint item_sidebar_unique_title unique (title)
+        </sql>
+    </changeSet>
+
+    <changeSet  author="CHICHI Hamza"  id="10">
+        <comment>add unique constraint items_id to items_by_sidebar </comment>
+        <sql>
+            alter table items_by_sidebar
+                add constraint items_by_sidebar_unique_items_id unique (items_id)
+        </sql>
+    </changeSet>
+
+    <changeSet  author="CHICHI Hamza"  id="11">
+        <comment>add unique constraint foreign key items_id to items_by_sidebar</comment>
+        <sql>
+            alter table items_by_sidebar
+            add constraint foreign_key_sidebar_item
+            foreign key (items_id)
+            references sidebar_item
+        </sql>
+    </changeSet>
+
+    <changeSet  author="CHICHI Hamza"  id="12">
+        <comment>add unique constraint foreign key sidebar to items_by_sidebar</comment>
+        <sql>
+            alter table items_by_sidebar
+            add constraint foreign_key_sidebar
+            foreign key (sidebar_id)
+            references sidebar
+        </sql>
+    </changeSet>
+
+    <changeSet  author="HALOUI Ahmed"  id="13">
+        <comment>create table effyis_user</comment>
+        <sql>
+            create table effyis_user(
+                id serial primary key not null,
+                first_name varchar not null,
+                last_name varchar not null,
+                adress varchar not null,
+                tel varchar not null,
+                user_id varchar not null,
+                agreement boolean not null,
+                account_id bigint not null,
+                foreign key (account_id) references account (id)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet  author="CHICHI Hamza"  id="14">
+        <comment>create table footer</comment>
+        <sql>
+            create table footer (
+            id bigserial not null,
+            primary key (id)
+            )
+        </sql>
+    </changeSet>
+
+    <changeSet  author="CHICHI Hamza"  id="15">
+        <comment>create table footer_items</comment>
+        <sql>
+            create table footer_items (
+            id bigserial not null,
+            content varchar(255),
+            item_title varchar(255),
+            position int4,
+            type_section varchar(255) not null,
+            primary key (id)
+            )
+        </sql>
+    </changeSet>
+
+    <changeSet  author="CHICHI Hamza"  id="16">
+        <comment>create table items_by_footer</comment>
+        <sql>
+            create table items_by_footer (
+            footer_id int8 not null,
+            items_id int8 not null
+            )
+        </sql>
+    </changeSet>
+
+
+    <changeSet  author="CHICHI Hamza"  id="18">
+        <comment>unique position footer_items</comment>
+        <sql>
+            alter table footer_items
+            add constraint items_unique_position unique (position)
+        </sql>
+    </changeSet>
+
+    <changeSet  author="CHICHI Hamza"  id="19">
+        <comment>unique items_id in items_by_footer</comment>
+        <sql>
+            alter table items_by_footer
+            add constraint items_id_unique unique (items_id)
+        </sql>
+    </changeSet>
+
+    <changeSet  author="CHICHI Hamza"  id="22">
+        <comment>foreign key items_id in items_by_footer</comment>
+        <sql>
+            alter table items_by_footer
+            add constraint foreign_key_items_id
+            foreign key (items_id)
+            references footer_items
+        </sql>
+    </changeSet>
+
+    <changeSet  author="CHICHI Hamza"  id="23">
+        <comment>foreign key footer_id in items_by_footer</comment>
+        <sql>
+            alter table items_by_footer
+            add constraint foreign_key_footer_id
+            foreign key (footer_id)
+            references footer
+        </sql>
+    </changeSet>
+
+    <changeSet  author="CHICHI Hamza"  id="24">
+        <comment>insert section number to footer</comment>
+        <sql>
+            INSERT INTO footer values(default);
+        </sql>
+    </changeSet>
+
+    <changeSet author="MAHLA Ilyasse Badreddine" id="29">
+		<comment>create table attachement</comment>
+		<sql>
+			create table attachement (
+			id bigserial not null,
+			active_attachement int4 not null,
+			type_attachement varchar(255),
+			position_attachement int4 not null,
+			primary key (id)
+			);
+		</sql>
+	</changeSet>
+	<changeSet author="MAHLA Ilyasse Badreddine" id="30">
+		<comment>create table cloudinary_information</comment>
+		<sql>
+			create table cloudinary_information (
+			id bigserial not null,
+			bytes
+			int4 not null,
+			format varchar(255),
+			public_id varchar(255) not null,
+			resource_type varchar(255),
+			secure_url varchar(255),
+			attachement_id int8 not null,
+			active_informations int4 not null, 
+			primary key (id)
+			);
+		</sql>
+	</changeSet>
+	<changeSet author="MAHLA Ilyasse Badreddine" id="31">
+		<comment>add constraint foreign key to cloudinary_information table
+		</comment>
+		<sql>
+			alter table cloudinary_information
+			add constraint
+			FKfx3ke5qk4hbttv98qqpdrsw56
+			foreign key (attachement_id)
+			references
+			attachement;
+		</sql>
+	</changeSet>
+
+	<changeSet author="MAHLA Ilyasse Badreddine" id="32">
+		<comment>Insert into attachement table</comment>
+		<sql>
+			INSERT INTO attachement(
+			id, active_attachement, type_attachement, position_attachement)
+			VALUES (1, 0, 'LOGO',0);
+		</sql>
+	</changeSet>
+
+    <changeSet author="MAHLA Ilyasse Badreddine" id="33">
+        <comment>Insert into attachement table</comment>
+        <sql>
+            INSERT INTO attachement(
+            id, active_attachement, type_attachement, position_attachement)
+            VALUES (2, 0, 'SLIDESHOW',0);
+        </sql>
+    </changeSet>
+
+
+    <changeSet  author="HALOUI Ahmed"  id="34">
+        <comment>add unique constraint login to account</comment>
+        <sql>
+            alter table account
+            add constraint account_unique_login unique (login)
+        </sql>
+    </changeSet>
+
+    <changeSet  author="CHICHI Hamza"  id="35">
+        <comment>insert into sidebar</comment>
+        <sql>
+            INSERT INTO sidebar values(default);
+        </sql>
+    </changeSet>
+
+
+    <changeSet  author="CHICHI Hamza"  id="36">
+        <comment>insert into sidebar_item</comment>
+        <sql>
+            INSERT INTO sidebar_item ( position, title, url)
+            values(0,'Choisir Une Catégorie','/Category');
+
+            INSERT INTO sidebar_item ( position, title, url)
+            values(1,'Meilleures Ventes','/selling/top/20');
+
+            INSERT INTO sidebar_item ( position, title, url)
+            values(2,'Suivi des Commandes','https://www.17track.net/fr');
+
+            INSERT INTO sidebar_item ( position, title, url)
+            values(3,'Reporter un problème','https://effyisgroup.com/contactez-nous/');
+
+            INSERT INTO sidebar_item ( position, title, url)
+            values(4,'Localisation','https://www.google.com/maps/place/Effyis+Group/@33.5867449,-7.6341935,17z/data=!3m1!4b1!4m5!3m4!1s0xda7d29078652cd1:0x2c16c70206e9561d!8m2!3d33.5867449!4d-7.6320048');
+        </sql>
+    </changeSet>
+
+    <changeSet  author="CHICHI Hamza"  id="37">
+        <comment>insert into items_by_sidebar</comment>
+        <sql>
+            insert into items_by_sidebar (sidebar_id, items_id) values (1, 1);
+            insert into items_by_sidebar (sidebar_id, items_id) values (1, 2);
+            insert into items_by_sidebar (sidebar_id, items_id) values (1, 3);
+            insert into items_by_sidebar (sidebar_id, items_id) values (1, 4);
+        </sql>
+    </changeSet>
+
+
+
+    <changeSet  author="CHICHI Hamza"  id="38">
+        <comment>insert into footer_items</comment>
+        <sql>
+            INSERT INTO footer_items ( content, item_title, position, type_section )
+            values('Insert your logo here' ,'Store' , 0 ,'URL_IMAGE');
+
+            INSERT INTO footer_items ( content, item_title, position, type_section )
+            values('Terms|/Terms|Privacy|/Privacy|Shipping|/Shipping|About|/About', 'Policies' , 1 , 'LIST');
+
+            INSERT INTO footer_items ( content, item_title, position, type_section )
+            values('Alimenté par EFFYIS CMS © 2021', 'EFFYIS CMS' , 2 ,'TEXT');
+        </sql>
+    </changeSet>
+
+
+    <changeSet  author="CHICHI Hamza"  id="39">
+        <comment>insert into footer_items</comment>
+        <sql>
+            insert into items_by_footer (footer_id, items_id) values (1, 1);
+            insert into items_by_footer (footer_id, items_id) values (1, 2);
+            insert into items_by_footer (footer_id, items_id) values (1, 3);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,25 @@
+.person_pin{
+    font-size: 170px;
+    margin-bottom: 170px;
+    margin-right: 148px;
+    color: var(--primary-default);
+}
+
+.popup-container{
+    width: 500px;
+}
+mat-form-field {
+  width: 100%;
+}
+
+.password_icon{
+  cursor: pointer;
+}
+
+.spinner{
+  position: absolute;
+}
+
+:host ::ng-deep .spinner circle{   
+    stroke: var(--primary-default);
+}

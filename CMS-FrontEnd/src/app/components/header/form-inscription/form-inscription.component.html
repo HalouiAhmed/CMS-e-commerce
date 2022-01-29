@@ -1,0 +1,97 @@
+    <form [formGroup]= "form_inscription" (ngSubmit)="onSubmit()" >
+        <div class="form-group">
+                <input type= "text" class="form-control" placeholder="Entrer votre nom"  formControlName="lastName">
+        </div>
+        <div *ngIf="form_inscription.controls['lastName'].invalid && (form_inscription.controls['lastName'].dirty || form_inscription.controls['lastName'].touched)" class="alert alert-danger">
+            <div *ngIf="form_inscription.controls['lastName'].errors.required">
+                Le nom est requis
+            </div>
+        </div>
+        <div class="form-group">
+                <input type= "text" class="form-control" placeholder="Entrer votre prénom" formControlName="firstName">
+        </div>
+        <div *ngIf="form_inscription.controls['firstName'].invalid && (form_inscription.controls['firstName'].dirty || form_inscription.controls['firstName'].touched)" class="alert alert-danger">
+            <div *ngIf="form_inscription.controls['firstName'].errors.required">
+                Le prenom est requis
+            </div>
+        </div>
+        <div class="form-group">
+                <input type= "text" class="form-control" placeholder="Entrer votre adresse e-mail" formControlName="email">
+        </div>
+        <div *ngIf="form_inscription.controls['email'].invalid && (form_inscription.controls['email'].dirty || form_inscription.controls['email'].touched)" class="alert alert-danger">
+            <div *ngIf="form_inscription.controls['email'].errors.required">
+                L'adresse email est requise
+            </div>
+            <div *ngIf="form_inscription.controls['email'].errors.email">
+                Veuillez entrer l'adresse mail dans le format: ex@amp.le
+            </div>
+        </div>
+      <div class="form-group">
+        <label></label>
+        <div class="input-group">
+          <!-- Change input type to be able to accept dynamic data -->
+          <input
+            [type]="fieldTextType ? 'text' : 'password'"
+            class="form-control"
+            formControlName="password"
+            placeholder="Saisissez votre mot de passe"
+            ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/"
+          />
+          <div class="input-group-append">
+                  <span class="input-group-text">
+                    <i
+                      class="fa"
+                      [ngClass]="{
+                        'fa-eye-slash': !fieldTextType,
+                        'fa-eye': fieldTextType
+                      }"
+                      (click)="toggleFieldTextType()"
+                    ></i>
+                  </span>
+          </div>
+        </div>
+        <div *ngIf="form_inscription.controls['password'].invalid && (form_inscription.controls['password'].dirty)">
+          <div *ngIf="form_inscription.controls['password'].errors.required" class="alert alert-danger">
+            Le mot de passe est requis
+          </div>
+          </div>
+        <div *ngIf="form_inscription.controls['password'].touched">
+        8 caractères minimum, au moins une majuscule, un chiffre et un caractère spécial
+        </div>
+        <div class="form-group">
+          <label></label>
+          <div class="input-group">
+            <input
+              [type]="repeateTextType ? 'text' : 'password'"
+              class="form-control"
+              formControlName="confirm_mot_de_passe"
+              placeholder="Saisissez votre mot de passe"
+            />
+            <div class="input-group-append">
+                  <span class="input-group-text">
+                    <i
+                      class="fa"
+                      [ngClass]="{
+                        'fa-eye-slash': !repeateTextType,
+                        'fa-eye': repeateTextType
+                      }"
+                      (click)="toggleRepeateFieldTextType()"
+                    ></i>
+                  </span>
+            </div>
+          </div>
+          <div *ngIf="form_inscription.controls['confirm_mot_de_passe'].invalid && (form_inscription.controls['confirm_mot_de_passe'].dirty || form_inscription.controls['confirm_mot_de_passe'].touched)" class="alert alert-danger">
+            <div *ngIf="form_inscription.controls['confirm_mot_de_passe'].errors.required">
+              Saisissez a nouveau votre mot de passe
+            </div>
+            <div *ngIf="form_inscription.controls['confirm_mot_de_passe'].errors.confirmedValidator">Les mots de passe doivent etre identiques</div>
+          </div>
+        </div>
+          <label><input type="checkbox" formControlName="cb">J'ai lu et j'accepte les
+            <a href="#" style="color:red">Conditions générales de vente</a>
+            et notamment la mention relative à la protection des données personnelles. Conformément à la loi 09-08, vous disposez d'un droit d'accès, de rectification et d'opposition au traitement de vos données personnelles</label>
+          <div class="col text-center">
+        <button  [disabled]="form_inscription.invalid" (click)="onSubmit" class="btn btn-outline-primary" type="submit">S'inscrire</button>
+        </div>
+        </div>
+    </form>

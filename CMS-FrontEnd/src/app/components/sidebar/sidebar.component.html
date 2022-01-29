@@ -1,0 +1,37 @@
+<mat-drawer-container>
+    <mat-drawer #drawer mode="side">
+        <div class="img-section d-flex justify-content-center">
+            <img src="{{logo}}" />
+        </div>
+        <div id="sized-box" class="d-flex justify-content-start">
+            <mat-icon id="menu_open_icon">menu_open</mat-icon>
+            <h4>Menu Principal</h4>
+        </div>
+        <ul>
+            <li [class.active-item]="isActive('/',true)" routerLink="/">
+                <mat-icon [class.active-icon]="isActive('/',true)">home</mat-icon>
+                <span class="aligned-with-icon">Accueil</span>
+            </li>
+            <li [class.active-item]="isActive(item.url,true)" *ngFor="let item of sortedItems"
+                routerLink="/{{item?.url}}">
+                <mat-icon [class.active-icon]="isActive(item.url,true)">star</mat-icon>
+                <span class="aligned-with-icon">{{item?.title}}</span>
+            </li>
+            <li [class.active-item]="isActive('/aboutus',true)" routerLink="/aboutus">
+                <mat-icon [class.active-icon]="isActive('/aboutus',true)">menu_book</mat-icon>
+                <span class="aligned-with-icon">À propos</span>
+            </li>
+            <li [class.active-item]="isActive('/contact',true)" routerLink="/contact">
+                <mat-icon [class.active-icon]="isActive('/contact',true)">perm_phone_msg</mat-icon>
+                <span class="aligned-with-icon">Contactez-nous</span>
+            </li>
+        </ul>
+    </mat-drawer>
+    <div class="example-sidenav-content">
+        <app-header (toggle)="drawer.toggle()"></app-header>
+        <main class="main">
+            <router-outlet></router-outlet>
+        </main>
+        <app-footer></app-footer>
+    </div>
+</mat-drawer-container>

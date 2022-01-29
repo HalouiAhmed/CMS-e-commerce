@@ -1,0 +1,64 @@
+<section class="mb-5">
+    <div class="row">
+      <div class="col-md-4 mb-4 mb-md-0">
+  
+        <div id="mdb-lightbox-ui"></div>
+  
+        <div class="mdb-lightbox">
+  
+          <div class="row product-gallery mx-1">
+  
+            <div class="col-12 mb-3">
+              <figure class="view overlay rounded z-depth-1 main-img">
+                  <img src="{{chosenImg.url}}"
+                    class="img-fluid z-depth-1">
+              </figure>
+            </div>
+            <div class="col-12">
+                <div class="row">
+                  <div class="col-3"*ngFor="let image of product.images">
+                    <div class="small-img view overlay rounded z-depth-1 gallery-item">
+                      <img (click)="changeImg(image)" src="{{image.url}}"
+                        class="img-fluid">
+                      <div class="mask rgba-white-slight"></div>
+                    </div>
+                  </div>
+                 
+                </div>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+      <div class="col-md-8">
+        <h3 style="margin-top: 20px;">{{product.name}}</h3>
+        <h3>{{product.price}}</h3>
+        <hr class="mb-4">
+        <button type="button" class="btn-produit btn-block waves-effect waves-light">AJOUTER AU PANIER</button>
+        <mat-accordion>
+         <div><mat-expansion-panel>
+             <mat-expansion-panel-header>
+                 <mat-panel-title>
+                 </mat-panel-title>
+                 <mat-panel-description>
+                   DESCRIPTION & GUIDE DE TAILLES
+                 </mat-panel-description>
+             </mat-expansion-panel-header>
+             <p>{{product.description}}</p>
+             
+         </mat-expansion-panel>
+         <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                </mat-panel-title>
+                <mat-panel-description>
+                    INFORMATION SUR LA LIVRAISON
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+        </mat-expansion-panel></div>
+    </mat-accordion>
+      </div>
+    </div>
+  
+  </section>
+  <!--Section: Block Content-->

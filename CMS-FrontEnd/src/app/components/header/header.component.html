@@ -1,0 +1,34 @@
+<mat-toolbar class="mat-elevation-z3">
+  <button class="menu_button" mat-icon-button (click)="sidebarToggle()">
+    <mat-icon style="font-size: 36px;color: var(--primary-default)">menu</mat-icon>
+  </button>
+  <span class="example-spacer"></span>
+  <div class="container h-50">
+    <div class="d-flex justify-content-center h-100">
+      <div class="searchbar">
+        <input class="search_input" type="text" (focus)="onFocus()" placeholder="Search...">
+        <mat-icon class="search_icon">search</mat-icon>
+        <ul *ngIf="show" class="dropdown-content">
+          <li (click)="goTo(item?.url)" *ngFor="let item of sideBarItems">
+            <a>{{item.title}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button *ngIf="!connexionService.isLoggedIn()" (click)="openDialog('c')" class="mr-4" mat-raised-button
+      color="success">
+      <mat-icon>person</mat-icon>
+      <span class="aligned-with-icon">Se connecter</span>
+    </button>
+    <button *ngIf="!connexionService.isLoggedIn()" (click)="openDialog('s')" class="mr-4" mat-raised-button
+      color="success">
+      <mat-icon>person_add</mat-icon>
+      <span class="aligned-with-icon">Rejoignez Nous</span>
+    </button>
+    <button routerLink="/panier" mat-icon-button class="shoping_icon">
+      <mat-icon>add_shopping_cart</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

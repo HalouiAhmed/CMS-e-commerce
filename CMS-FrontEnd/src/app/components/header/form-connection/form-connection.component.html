@@ -1,0 +1,54 @@
+
+<form [formGroup]= "form_connexion" class="mx-auto" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <input type= "text" class="form-control" placeholder="Entrer votre adresse e-mail" formControlName="login">
+  </div>
+  <div *ngIf="form_connexion.controls['login'].invalid && (form_connexion.controls['login'].dirty || form_connexion.controls['login'].touched)" class="alert alert-danger">
+    <div *ngIf="form_connexion.controls['login'].errors.required">
+      L'adresse email est requise
+    </div>
+    <div *ngIf="form_connexion.controls['login'].errors.email">
+      Veuillez entrer l'adresse mail dans le format: ex@amp.le
+    </div>
+  </div>
+  <div class="form-group">
+    <label></label>
+    <div class="input-group">
+      <!-- Change input type to be able to accept dynamic data -->
+      <input
+        [type]="fieldTextType ? 'text' : 'password'"
+        class="form-control"
+        formControlName="password"
+        placeholder="Saisissez votre mot de passe"
+      />
+      <div class="input-group-append">
+                  <span class="input-group-text">
+                    <i
+                      class="fa"
+                      [ngClass]="{
+                        'fa-eye-slash': !fieldTextType,
+                        'fa-eye': fieldTextType
+                      }"
+                      (click)="toggleFieldTextType()"
+                    ></i>
+                  </span>
+      </div>
+    </div>
+      <div *ngIf="form_connexion.controls['password'].invalid && (form_connexion.controls['password'].dirty || form_connexion.controls['login'].touched)" class="alert alert-danger">
+        <div *ngIf="form_connexion.controls['password'].errors.required">
+          Le mot de passe est requis
+        </div>
+      </div>
+    </div>
+  <br>
+  <div class="col text-right">
+    <a href="#">Mot de passe oublié?</a>
+  </div>
+  <br>
+  <div class="col text-center">
+
+    <button [disabled]="form_connexion.invalid" (click)="onSubmit"  type="submit" class="btn btn-outline-primary">Connexion</button>
+  </div>
+
+</form>
+

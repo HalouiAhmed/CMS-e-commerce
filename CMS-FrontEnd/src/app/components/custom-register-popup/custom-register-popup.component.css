@@ -1,0 +1,16 @@
+.popup-container{
+    width: 500px;
+}
+
+.password_icon{
+  cursor: pointer;
+}
+
+.formulaire{
+  margin-top: 10px;
+}
+
+:host ::ng-deep .spinner circle{   
+    stroke: var(--primary-default);
+}
+

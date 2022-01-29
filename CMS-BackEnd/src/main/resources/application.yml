@@ -1,0 +1,114 @@
+spring:
+  application:
+    name: socle-effyis
+    liquibase:
+      enabled: true
+  jpa:
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none  # Prevent Hibernate from Automatic Changes to the DDL Schema
+        #naming:
+      #implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl # Respect sensitive naming @Column(name="xxx")
+      #physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl  # Same thing
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    initialization-mode: never  # Prevent JPA from trying to Initialize
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: email
+    password: password
+    sign: Effyis
+    location: Casablanca
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+
+ldap:
+  urls: ldap://ldap.forumsys.com:389/
+  base:
+    dn: dc=example,dc=com
+  username: cn=read-only-admin,dc=example,dc=com
+  password: password
+  user:
+    dn:
+      pattern: uid={0}
+
+security:
+  public:
+    endpoint: /effyis/api/api-docs/**,
+      /effyis/api/swagger-ui/**,
+      /effyis/api/accounts/login,
+      /effyis/api/accounts/SignUp,
+      /effyis/api/sidebar,
+      /effyis/api/footer,
+      /effyis/api/attachement/**
+  jwt:
+    secret: secret
+    expiration:
+      time: 259200000000
+  cors:
+    allowed:
+      origins: http://localhost:4200,http://127.0.0.1:4200
+      methods: HEAD,GET,POST,PUT,DELETE,PATCH
+      headers: keyDB,Accept,Origin,Content-Type,Depth,User-Agent,If-Modified-Since,Cache-Control,Authorization,X-Req,X-File-Size,X-Requested-With,X-File-Name
+
+springdoc:
+  swagger-ui:
+    path: /effyis/api/swagger-ui
+  api-docs:
+    path: /effyis/api/api-docs
+
+server:
+  port : 9000
+
+default:
+  role: DEFAULT
+
+config:
+  datasources:
+    -
+      url: jdbc:postgresql://localhost:5432/client1
+      username: postgres
+      password: root
+      client: client1
+      changelog: classpath:/db/changelog/changelog-master_client1.xml
+      dropFirst: true
+    -
+      url: jdbc:postgresql://localhost:5432/client2
+      username: postgres
+      password: root
+      client: client2
+      changelog: classpath:/db/changelog/changelog-master_client2.xml
+      dropFirst: true
+
+datasource:
+  max:
+    pool:
+      size: 20
+  min:
+    idle: 10
+  idle:
+    timeout: 120000
+
+footer:
+  max:
+    section: 4
+
+CLOUDINARY_URL: cloudinary://362744843831899:bgL-n1-bS4ouNrcvmuddulwtWws@effyis-group
+cloudinary:
+  api_key: 362744843831899
+  api_secret: bgL-n1-bS4ouNrcvmuddulwtWws
+  cloud_name: effyis-group
+

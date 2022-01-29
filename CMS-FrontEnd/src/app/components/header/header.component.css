@@ -1,0 +1,92 @@
+mat-icon{
+    cursor: pointer;
+}
+
+.menu_button{
+  padding-right:12px;
+}
+
+.mat-toolbar{
+    background-color: white;
+    color: white;
+}
+
+.shoping_icon mat-icon{
+  color: var(--primary-default);
+  font-size: 30px;
+}
+
+mat-toolbar{
+    z-index: 100;
+    position: sticky;
+    top: 0;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.searchbar{
+height: 36px;
+background-color: white;
+border-radius: 50px;
+border: 1px solid var(--primary-default);
+}
+
+.search_input{
+color: var(--primary-default);
+border: 0;
+outline: 0;
+background: none;
+line-height: 30px;
+font-size: 13px;
+padding-left: 10px;
+padding-bottom: 50px;
+width: 220px;
+caret-color:var(--primary-default);
+}
+
+.search_icon{
+height: 36px;
+width: 36px;
+float: right;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 50%;
+text-decoration:none;
+background: var(--primary-default);
+color: var(--primary-light);
+margin-top: -1px;
+}
+
+.dropdown-content {
+  display: block;
+  position: absolute;
+  top: 55px;
+  background-color: white;
+  min-width: 250px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+ul{
+  list-style-type: none;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 5px 16px;
+  text-decoration: none;
+  display: block;
+  margin-left: -40px;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--primary-default);
+  color: var(--primary-light);
+  text-decoration: none;
+}

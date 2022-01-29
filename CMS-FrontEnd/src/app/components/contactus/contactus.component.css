@@ -1,0 +1,13 @@
+mat-form-field.mat-form-field {
+    width: 500px;
+}
+h1{
+    font-weight: 550;
+}
+button{
+    background-color: var(--primary-default);
+    color: white;
+}
+.boxx{
+    margin-top: 60px;
+}

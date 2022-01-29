@@ -1,0 +1,54 @@
+:root {
+        --primary-default: #1B568E;
+        --primary-dark: #14409a30;
+        --primary-light: white;
+
+        --primary-hover-default: #a1d0ff;
+        --primary-hover-dark: #14409a30;
+        --primary-hover-light: white;
+
+        --primary-active-default: #55A8FD;
+        --primary-active-dark: #14409a30;
+        --primary-active-light: white;
+
+        --error-default: red;
+        --error-dark: #800600;
+        --error-light: #FFCECC;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-button.mat-success,
+.mat-stroked-button.mat-success {
+    color: var(--primary-default);
+}
+.mat-button.mat-success:hover,
+.mat-stroked-button.mat-success:hover {
+  background-color: var(--primary-light);
+}
+
+.mat-raised-button.mat-success,
+.mat-flat-button.mat-success,
+.mat-fab.mat-success,
+.mat-mini-fab.mat-success {
+  color: var(--primary-light);
+  background-color: var(--primary-default);
+}
+
+.mat-icon-button.mat-success {
+  color:var(--primary-default);
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+    background-color: var(--primary-default) !important;
+}
+
+mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: var(--primary-default) !important;
+}
+
+

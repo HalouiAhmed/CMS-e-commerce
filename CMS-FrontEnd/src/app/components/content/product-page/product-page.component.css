@@ -1,0 +1,21 @@
+.btn-produit{
+    background-color: #FFFFFF;
+  border: 2px solid #1B568E ;
+  color:#1B568E;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin-bottom: 50px;
+  margin-top: 20px;
+}
+.row{
+    margin-left: 80px;
+    margin-top: 15px;
+    margin-right: 80px;
+}
+
+.small-img {
+  cursor: pointer;
+}

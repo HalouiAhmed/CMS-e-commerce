@@ -1,0 +1,28 @@
+<div class="footer">
+    <div class="text-center">
+        <p class="text-center">ABONNEZ VOUS À NOTRE NEWSLETTRE</p>
+    </div>
+    <div class="d-flex justify-content-center">
+        <form class="form" [formGroup]="subscriptionForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div>
+                    <input ng formControlName="email" type="text" name="email" placeholder="Entrer votre Email">
+                    <br>
+                    <mdb-error *ngIf="email.invalid && (email.dirty || email.touched)">email invalid</mdb-error>
+                </div>
+                <div>
+                    <button type="submit" mat-raised-button>Abonné</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <mat-divider></mat-divider>
+    <div>
+        <div class="flex-container, footer-flex" fxLayout="row" fxLayoutGap="30px">
+            <div class="section-footer" *ngFor="let footerItem of footer">
+                <p class="title-footer"><b>{{footerItem.itemTitle}}</b></p>
+                <p><b> {{footerItem.content}} </b></p>
+            </div>
+        </div>
+    </div>
+</div>
